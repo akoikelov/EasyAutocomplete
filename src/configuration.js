@@ -111,9 +111,15 @@ var EasyAutocomplete = (function(scope){
 			categories: [{
 				//listLocation: "",
 				maxNumberOfElements: 4
-			}]
-
+			}],
+			ajaxDataParser: function (data) {
+				return data;
+			}
 		};
+
+		if (options.ajaxDataParser && typeof v === "function") {
+			defaults['ajaxDataParser'] = options.ajaxDataParser;
+		}
 		
 		var externalObjects = ["ajaxSettings", "template"];
 

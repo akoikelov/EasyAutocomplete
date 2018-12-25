@@ -539,7 +539,7 @@ var EasyAutocomplete = (function(scope) {
 							$.ajax(settings) 
 								.done(function(data) {
 
-									var listBuilders = listBuilderService.init(data);
+									var listBuilders = listBuilderService.init(options['ajaxDataParser'](data));
 
 									listBuilders = listBuilderService.updateCategories(listBuilders, data);
 									

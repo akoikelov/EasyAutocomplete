@@ -117,9 +117,15 @@ var EasyAutocomplete = (function(scope){
 
 			categories: [{
 				maxNumberOfElements: 4
-			}]
-
+			}],
+			ajaxDataParser: function (data) {
+				return data;
+			}
 		};
+
+		if (options.ajaxDataParser && typeof v === "function") {
+			defaults['ajaxDataParser'] = options.ajaxDataParser;
+		}
 		
 		var externalObjects = ["ajaxSettings", "template"];
 
@@ -1367,7 +1373,7 @@ var EasyAutocomplete = (function(scope) {
 							$.ajax(settings) 
 								.done(function(data) {
 
-									var listBuilders = listBuilderService.init(data);
+									var listBuilders = listBuilderService.init(options['ajaxDataParser'](data));
 
 									listBuilders = listBuilderService.updateCategories(listBuilders, data);
 									
